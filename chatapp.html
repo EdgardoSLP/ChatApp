@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatApp</title>
+    <link rel="stylesheet" href="stylechatapp.css">
+    <script>
+        function duplicate(){
+            var str_html = '';
+            var deb = document.querySelector('.copy').innerHTML;
+            console.log(deb); //log in console class copy innerHTML 
+            str_html += deb;
+            console.log(str_html);  //log in console class renglon innerHTML - Guardar en registro en contenido de la clase copy
+            
+            document.querySelector('body').innerHTML += str_html;
+        };
+
+        function activetab(){
+            var tabestados = document.querySelectorAll('#bottom-line');
+            for (var i = 0; i<tabestados.length; i++){
+                tabestados[i].style.borderBottom = '3px solid green';
+            }
+            tabestados[1].style.borderBottom = '3px solid white';
+        }
+
+        function activetab2(){
+            var tabestados = document.querySelectorAll('#bottom-line');
+            for (var i = 0; i<tabestados.length; i++){
+                tabestados[i].style.borderBottom = '3px solid green';
+            }
+            tabestados[2].style.borderBottom = '3px solid white';
+        }
+
+        function activetab3(){
+            var tabestados = document.querySelectorAll('#bottom-line');
+            for (var i = 0; i<tabestados.length; i++){
+                tabestados[i].style.borderBottom = '3px solid green';
+            }
+            tabestados[0].style.borderBottom = '3px solid white';
+        }
+
+    </script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="appname" onclick="duplicate()">ChatApp</div>
+        <div class="space"></div>
+        <div class="search">S</div>
+        <div class="submenu">SM</div>
+    </div>
+
+    <div class="menu">
+        <div class="camara">C</div>
+        <div id="bottom-line" class="chats" onclick="activetab3()">CHATS</div>
+        <div id="bottom-line" class="estados" onclick="activetab()">ESTADOS</div>
+        <div id="bottom-line" class="llamadas" onclick="activetab2()">LLAMADAS</div>
+    </div>
+
+    <div class="copy">
+        <div class="renglon">
+            <div class="icon">
+                <img src="e-mail-295978_640.png" height="30px" width="30 px" alt="Avatar">
+            </div>
+            <div class="content">
+                <div class="top-row">
+                    <div class="chatname">ESTOMA</div>
+                    <div class="timedate">8:20 p.m.</div>
+                </div>
+                <div class="bottom-row">
+                    <div class="contacto">Samuel: Buen día</div>
+                    <div class="status">1</div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    
+</body>
+
+</html>
