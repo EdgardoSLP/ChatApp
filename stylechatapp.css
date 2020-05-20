@@ -73,7 +73,7 @@ body {
     background-color: lightgreen;
 }
 
-.renglon {
+.renglon, .rowEstados {
     display: flex;
     align-items: center;
     align-content: center;
@@ -81,13 +81,13 @@ body {
     padding-top: 10px;
 }
 
-.icon {
+.icon, .icEstado {
     flex: 1 1 auto;
     text-align: center;
     
 }
 
-.content {
+.content, .contEdo {
     flex: 5 1 auto;
     display: flex;
     flex-direction: column;
@@ -104,7 +104,7 @@ body {
     flex: 5 1 auto;
 }
 
-.chatname {
+.chatname, .miEstado {
     font-weight: bold;
 }
 

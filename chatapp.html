@@ -7,6 +7,8 @@
     <title>ChatApp</title>
     <link rel="stylesheet" href="stylechatapp.css">
     <script>
+
+
         function duplicate(){
             var str_html = '';
             var deb = document.querySelector('.copy').innerHTML;
@@ -41,6 +43,18 @@
             tabestados[0].style.borderBottom = '3px solid white';
         }
 
+        function mostrarEstado(){
+            var chat = document.getElementById("copy"); //Agregue a una variable el contenido del renglon copy
+            chat.style.display = "none";    //Aqui declaro la instrucción para que cuando se ejecute esta función el contenido de copy no aparezca
+            var edo = document.getElementById("rowEstados");
+
+            if (edo.style.display === "none") {
+                edo.style.display = "block";
+            }else {
+                edo.style.display="none";
+            }
+        }
+
     </script>
 </head>
 
@@ -61,9 +75,12 @@
             <img src="camera-1085705_1280.png" height="23px" width="23px" alt="Cam">
         </div>
         <div id="bottom-line" class="chats" onclick="activetab3()">CHATS</div>
-        <div id="bottom-line" class="estados" onclick="activetab()">ESTADOS</div>
+        <div id="bottom-line" class="estados" onclick="activetab(), mostrarEstado()">ESTADOS</div>
         <div id="bottom-line" class="llamadas" onclick="activetab2()">LLAMADAS</div>
     </div>
+    <!-- Quise poner en el onclick de ESTADOS, que se ejecurara la funcion para mostrar el
+    contenido del renglon de estados "rowEstados". Marca error en la linea 48 y 78-->
+
 
     <div class="copy">
         <div class="renglon">
@@ -82,6 +99,18 @@
                 
             </div>
         </div>
+    </div>
+
+    
+    <!--Renglon para la seccion de estados de ChatApp-->
+    <div class="rowEstados">
+        <div class="icEstado">
+            <img src="girl-2696947_640.jpg" height="30px" width="30px" alt="Perfil">
+        </div>
+        <dic class="contEdo">
+            <div class="miEstado">Mi Estado</div>
+            <div class="dateEstados">Hoy 2:00 p.m.</div>
+        </dic>
     </div>
 
     
