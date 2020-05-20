@@ -108,7 +108,7 @@ body {
     font-weight: bold;
 }
 
-.timedate, {
+.timedate {
     flex: 1 1 auto;
     text-align: right;
     padding-right: 3px;
