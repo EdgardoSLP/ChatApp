@@ -41,30 +41,40 @@
         }
 
         function mostrarEstados(){
-            var chat = document.querySelectorAll('.rowEstados'); 
+            var edo = document.querySelectorAll('.rowEstados'); 
 
-            for (var i=0; i<chat.length; i++){
-                chat[i].style.display="block";
+            for (var i=0; i<edo.length; i++){
+                edo[i].style.display="block";
+                //edo[i].style.flex-direction="column";
+                /*Intente darle la direccion del renglon con esta instruccion 
+                (debido a que cuando cambio de seccion, cambia la direccion del renglon a columna),
+                pero no hace ningun cambio, deja el renglon de chats en todas
+                las secciones(ESTADOS y LLAMADAS)*/
+                
             }
+            
+
+            
         }
 
         /* Funciones para mostrar y ocultar el/los renglon(es) de la sección ESTADOS
         --------------------------------------------------------------------------*/
 
         function ocultarLlamadas(){
-            var edo = document.querySelectorAll('.rowCall');
+            var call = document.querySelectorAll('.rowCall');
 
-            for (var i=0; i<edo.length; i++){
-                edo[i].style.display="none";
+            for (var i=0; i<call.length; i++){
+                call[i].style.display="none";
 
             }
         }
 
         function mostrarLlamadas(){
-            var chat = document.querySelectorAll('.rowCall'); 
+            var call = document.querySelectorAll('.rowCall'); 
 
-            for (var i=0; i<chat.length; i++){
-                chat[i].style.display="block";
+            for (var i=0; i<call.length; i++){
+                call[i].style.display="block";
+                //call[i].style.color="red";
             }
         }
         /* Funciones para mostrar y ocultar el/los renglon(es) de la sección LLAMADAS
