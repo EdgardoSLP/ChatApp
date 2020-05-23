@@ -8,23 +8,47 @@
     <link rel="stylesheet" href="stylechatapp.css">
     <script>
 
+        
+        /* Utilice estas instrucciones de JavaScript para dar el efecto 
+        ocultar el ENCABEZADO al avanzar el contenido de la seccion hacia arriba, 
+        y de mostrar el contenido del ENCABEZADO, al momento de avanzar 
+        contenido hacia abajo. SI REALIZA EL EFECTO, PERO ME DESACOMODA TODO
+        -------------------------------------------------------------------------
+        
+        var prevScrollpos = window.pageYOffset;
+        window.onscroll = function() {
+        var currentScrollPos = window.pageYOffset;
+        if (prevScrollpos > currentScrollPos) {
+            document.getElementById("navbar").style.top = "0";
+        } else {
+            document.getElementById("navbar").style.top = "-50px";
+        }
+        prevScrollpos = currentScrollPos;
+        } 
+        
+        --------------------------------------------------------------------------*/
+
         /*Se crearon la funciones de Ocultar y Mostrar para cada uno de los relglones
         de información, y que se ocultara, si ese renglon no corresponde a esa sección, 
         y se mostrara la información que le corresponde*/ 
         
         function ocultarChat(){
-            var chat = document.querySelectorAll('.renglon'); 
+            var chat = document.querySelectorAll('.copy'); 
+            
 
             for (var i=0; i<chat.length; i++){
                 chat[i].style.display="none";
+                
             }
         };
 
         function mostrarChat(){
-            var chat = document.querySelectorAll('.renglon'); 
+            var chat = document.querySelectorAll('.copy'); 
+            
 
             for (var i=0; i<chat.length; i++){
                 chat[i].style.display="block";
+                
             }
         };
 
@@ -32,7 +56,7 @@
         --------------------------------------------------------------------------*/
 
         function ocultarEstados(){
-            var edo = document.querySelectorAll('.rowEstados');
+            var edo = document.querySelectorAll('.copyEdo');
 
             for (var i=0; i<edo.length; i++){
                 edo[i].style.display="none";
@@ -41,27 +65,18 @@
         }
 
         function mostrarEstados(){
-            var edo = document.querySelectorAll('.rowEstados'); 
+            var edo = document.querySelectorAll('.copyEdo'); 
 
             for (var i=0; i<edo.length; i++){
                 edo[i].style.display="block";
-                //edo[i].style.flex-direction="column";
-                /*Intente darle la direccion del renglon con esta instruccion 
-                (debido a que cuando cambio de seccion, cambia la direccion del renglon a columna),
-                pero no hace ningun cambio, deja el renglon de chats en todas
-                las secciones(ESTADOS y LLAMADAS)*/
-                
             }
-            
-
-            
         }
 
         /* Funciones para mostrar y ocultar el/los renglon(es) de la sección ESTADOS
         --------------------------------------------------------------------------*/
 
         function ocultarLlamadas(){
-            var call = document.querySelectorAll('.rowCall');
+            var call = document.querySelectorAll('.copyCall');
 
             for (var i=0; i<call.length; i++){
                 call[i].style.display="none";
@@ -70,11 +85,11 @@
         }
 
         function mostrarLlamadas(){
-            var call = document.querySelectorAll('.rowCall'); 
+            var call = document.querySelectorAll('.copyCall'); 
 
             for (var i=0; i<call.length; i++){
                 call[i].style.display="block";
-                //call[i].style.color="red";
+                
             }
         }
         /* Funciones para mostrar y ocultar el/los renglon(es) de la sección LLAMADAS
@@ -90,6 +105,9 @@
             
             document.querySelector('body').innerHTML += str_html;
         }
+        /* El problema que tengo es que al duplicar los renglones de chat, no los puedo 
+        ocultar al momento de cambiar de a la seccion de ESTADOS y LLAMADAS, unicamente 
+        se oculta el primer renglon, y al regresar se muestra, pero no los que se duplican */
 
         /*-------------------------------------------------------------------------
          Funciones para incluir la linea blanca en cada uno de las estiquetas de cada
@@ -134,7 +152,10 @@
 </head>
 
 <body>
-    <div class="header">
+
+    <!--Utilice un id para con valor NAVBAR para poder dar el efecto de que aparezca en elcabezado
+    al momento de recorrer el contenido hacia abajo-->
+    <div id= "navbar" class="header">
         <div class="appname" onclick="duplicate()">ChatApp</div>
         <div class="space"></div>
         <div class="search">
@@ -147,7 +168,7 @@
     <!--Diseño del Encabezado de nuestra aplicación
     --------------------------------------------------------------------------------->
 
-    <div class="menu">
+    <div  class="menu">
         <div class="camara">
             <img src="camera-1085705_1280.png" height="23px" width="23px" alt="Cam">
         </div>
@@ -161,7 +182,7 @@
     
 
     <div class="copy">
-        <div class="renglon">
+        <div  class="renglon">
             <div class="icon">
                 <img src="e-mail-295978_640.png" height="30px" width="30 px" alt="Avatar">
             </div>
@@ -187,35 +208,39 @@
     Utilizo la instrucción de "style="display:none" para ucultar la clase del 
     contenido del renglon rowEstados, que corresponde a la sección de ESTADOS.
     En el cual tengo el siguiente error: si no pongo la instrucción style="display:none, 
-    me pone el renglon rowEstados en la sección de CHATS, pero acomodado correctamente
-    pero ccuando cambio a la sección de Estados, me oculta el contenido de CHATS y 
-    LLAMADAS que es lo correcto, pero me desacomoda el contenido del renglon rowEstados.
-    Este mismo error ocurre cuando cambio entre las secciones-->
+    me pone el renglon rowEstados y rowCall en la sección de CHATS. -->
 
-    <div style="display:none" class="rowEstados">
-        <div class="icEstado">
-            <img src="girl-2696947_640.jpg" height="30px" width="30px" alt="Perfil">
-        </div>
-        <div class="contEdo">
-            <div class="miEstado">Mi Estado</div>
-            <div class="dateEstados">Hoy 2:00 p.m.</div>
+    <div style="display:none" class="copyEdo"> <!--Cree  una clase copy antes de la clase principal, para que al momento de cambiar de seccion, me respete las configuraciones CSS-->
+        <div  class="rowEstados">
+            <div class="icEstado">
+                <img src="girl-2696947_640.jpg" height="30px" width="30px" alt="Perfil">
+            </div>
+            <div class="contEdo">
+                <div class="miEstado">Mi Estado</div>
+                <div class="dateEstados">Hoy 2:00 p.m.</div>
+            </div>
         </div>
     </div>
+
     <!------------------------------------------------------------------------------
-    Diseño del contenido de la sección de LLAMADAS, ocurre el mismo error de LLAMADAS
-    en el contenido, si no uso la instrucción STYLE se acomoda en CHATS correctamente, 
-    pero cuando me voy a LLAMADAS, lo desacomoda-->
+    Diseño del contenido de la sección de LLAMADAS, ocurre el mismo error de ESTADOS
+    en el contenido, si no uso la instrucción STYLE se acomoda en CHATS -->
 
-    <div style="display:none" class="rowCall">
-        <div class="icLlamadas">
-            <img src="girl-2696947_640.jpg" height="30px" width="30px" alt="Perfil">
+    <div style="display:none" class="copyCall"> <!--Cree  una clase copy antes de la clase principal, para que al momento de cambiar de seccion, me respete las configuraciones CSS-->
+        <div  class="rowCall">
+            <div class="icLlamadas">
+                <img src="girl-2696947_640.jpg" height="30px" width="30px" alt="Perfil">
+            </div>
+            <div class="contCall">
+                <div class="nombreCall">Jesus</div>
+                <div class="dateCall">Hoy 2:00 p.m.</div>
+            </div>
+            <div class="tipoCall">
+                <img src="video-1364122_640.png" height="30px" width="30px" alt="Tipo">    
+            </div>
         </div>
-        <div class="contCall">
-            <div class="nombreCall">Jesus</div>
-            <div class="dateCall">Hoy 2:00 p.m.</div>
-        </div>
-        <div class="tipoCall">Cam</div>
     </div>
+
 
   
 </body>

@@ -15,6 +15,27 @@ body {
     padding-top: 10px;
     padding-bottom: 10px;
     text-align: right;
+
+}
+
+#navbar {
+    position :fixed;
+    top: 0;
+    transition: top 0.3s;
+}
+
+#navbar a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    text-decoration: none;
+}
+
+#navbar a:hover {
+    background-color: #ddd;
+    color: black;
 }
 
 .appname {
@@ -121,7 +142,7 @@ body {
 .tipoCall {
     flex: 1 1 auto;
     text-align: center;
-    padding: 10px;
+    padding: 3px;
     border-bottom: 1px solid grey;
 }
 
