@@ -1,146 +1,89 @@
-
-
-        
 /* Utilice estas instrucciones de JavaScript para dar el efecto 
 ocultar el ENCABEZADO al avanzar el contenido de la seccion hacia arriba, 
 y de mostrar el contenido del ENCABEZADO, al momento de avanzar 
-contenido hacia abajo. SI REALIZA EL EFECTO, PERO ME DESACOMODA TODO
--------------------------------------------------------------------------
+contenido hacia abajo. SI REALIZA EL EFECTO, PERO ME DESACOMODA TODO*/
 
-var prevScrollpos = window.pageYOffset;
+let ubicacionPrincipal = window.pageYOffset;
 window.onscroll = function() {
-var currentScrollPos = window.pageYOffset;
-if (prevScrollpos > currentScrollPos) {
-    document.getElementById("navbar").style.top = "0";
-} else {
-    document.getElementById("navbar").style.top = "-50px";
-}
-prevScrollpos = currentScrollPos;
-} 
-
---------------------------------------------------------------------------*/
-
-/*Se crearon la funciones de Ocultar y Mostrar para cada uno de los relglones
-de información, y que se ocultara, si ese renglon no corresponde a esa sección, 
-y se mostrara la información que le corresponde*/ 
-
-function ocultarChat(){
-    var chat = document.querySelectorAll('.allRow'); 
- 
-    
-
-    for (var i=0; i<chat.length; i++){
-        chat[i].style.display="none";
-
-        
+    let desp_actual = window.pageYOffset;
+    if (ubicacionPrincipal >= desp_actual){
+        document.getElementById('navbar').style.top = '0';
     }
-}
-
-function mostrarChat(){
-    var chat = document.querySelectorAll('.allRow');
-
-    
-
-    for (var i=0; i<chat.length; i++){
-        chat[i].style.display="inline";
-
-        
+    else{
+        document.getElementById('navbar').style.top = '-100px'; //
     }
+    ubicacionPrincipal = desp_actual;
 }
 
-/* Funciones para mostrar y ocultar el/los renglon(es) de la sección CHAT
---------------------------------------------------------------------------*/
+/* -------------------------------------------------------------------------
 
-function ocultarEstados(){
-    var edo = document.querySelectorAll('.copyEdo');
-
-    for (var i=0; i<edo.length; i++){
-        edo[i].style.display="none";
-
-    }
-}
-
-function mostrarEstados(){
-    var edo = document.querySelectorAll('.copyEdo'); 
-
-    for (var i=0; i<edo.length; i++){
-        edo[i].style.display="block";
-    }
-}
-
-/* Funciones para mostrar y ocultar el/los renglon(es) de la sección ESTADOS
---------------------------------------------------------------------------*/
-
-function ocultarLlamadas(){
-    var call = document.querySelectorAll('.copyCall');
-
-    for (var i=0; i<call.length; i++){
-        call[i].style.display="none";
-
-    }
-}
-
-function mostrarLlamadas(){
-    var call = document.querySelectorAll('.copyCall'); 
-
-    for (var i=0; i<call.length; i++){
-        call[i].style.display="block";
-        
-    }
-}
-/* Funciones para mostrar y ocultar el/los renglon(es) de la sección LLAMADAS
---------------------------------------------------------------------------*/
-
-/* Funcion para Duplicar el renglon ROW de la sección CHATS*/
+Funcion para Duplicar el renglon de la sección CHATS, ESTADOS y LLAMADAS*/
 function duplicate(){
-    var str_html = '';
-    var deb = document.querySelector('.allRow').innerHTML;
-    console.log(deb); //log in console class copy innerHTML 
-    str_html += deb;
-    console.log(str_html);  //log in console class renglon innerHTML - Guardar en registro en contenido de la clase copy
-    
-    document.querySelector('body').innerHTML += str_html;
-}
-/* El problema que tengo es que al duplicar los renglones de chat, no los puedo 
-ocultar al momento de cambiar de a la seccion de ESTADOS y LLAMADAS, unicamente 
-se oculta el primer renglon, y al regresar se muestra, pero no los que se duplican */
-
-/*-------------------------------------------------------------------------
- Funciones para incluir la linea blanca en cada uno de las estiquetas de cada
- una de las secciones */
-function activetab1(){
-    var tabestados = document.querySelectorAll('#bottom-line');
-    for (var i = 0; i<tabestados.length; i++){
-        tabestados[i].style.borderBottom = '3px solid green';
+    var str_html='';
+    var deb =document.querySelectorAll('.copy');
+    /*la variable deb va a seleccionar todos los div que esten nombrados con la
+    clase copy, el cual se encuentra como contenedor de cada una de las secciones,
+    CHATS, ESTADOS y LLAMADAS*/
+    for(i=0; i<deb.length; i++){
+      var activado = deb[i].style.display;
+      /* Se utiliza la variable ACTIVADO nos dirá cuál renglon de las secciones
+      CHATS, ESTADOS y LLAMADAS está seleccionado, */
+      if (activado=="block"){
+       str_html = document.querySelector('.row-'+i).innerHTML; //Guardamos el ROW que este identificado en la clase del segundo nivel de cada seccion,  
+       console.log(str_html) //grabar en consola el valor de ROW que se asigno en la variable
+       document.querySelector('.row-'+i).innerHTML += str_html;
+       //concatenamos el "row-i" y lo concatenamos con un valor igual almacenado en la consola
+      }
+     
+   
     }
-    tabestados[0].style.borderBottom = '3px solid white';
-
-    ocultarEstados();
-    mostrarChat();
-    ocultarLlamadas();
-}
-
-function activetab2(){
-    var tabestados = document.querySelectorAll('#bottom-line');
-    for (var i = 0; i<tabestados.length; i++){
+   
+   
+   }
+   //Esta función activa DIV estados "como seleccionado"
+   // y elimina la selección del resto
+   function activetab(renglon){
+    var tabestados=document.querySelectorAll('#bottom-line');
+    var edo = document.querySelectorAll('.copy');
+    for(var i=0; i<tabestados.length; i++){
         tabestados[i].style.borderBottom = '3px solid green';
+        edo[i].style.display="none";
+        //Todos los elementos del MENU les asigna un DISPLAY "NONE" para se ocultados
+        // y el bolde inferior le asigna un color VERDE
     }
-    tabestados[1].style.borderBottom = '3px solid white';
 
-    ocultarChat();
-    mostrarEstados();
-    ocultarLlamadas();
-}
+    /*En esta función, se va a activar la sección que se seleccione, la cual se va a identificar
+    con el parametro que se va a asignar se la instrucción Data Set, que se asignara al activar 
+    la instrucción ON-CLICK del DIV MENU*/
 
-function activetab3(){
-    var tabestados = document.querySelectorAll('#bottom-line');
-    for (var i = 0; i<tabestados.length; i++){
-        tabestados[i].style.borderBottom = '3px solid green';
-    }
-    tabestados[2].style.borderBottom = '3px solid white';
+    tabestados[renglon].style.borderBottom = '3px solid white';
+    edo[renglon].style.display="block";
 
-    ocultarChat();
-    ocultarEstados();
-    mostrarLlamadas();
-}
+    /* Al elemento identificado con el parametro RENGLON que se asigna al presionar el elemento y que es asignado 
+    por el DATA SET, le asigna in STYLE.DYSPLAY "BLOCK", el cual se mostrar al haber seleccionado la sección. */
+  
+   }
+   
+   
+   //Se implementa la función que fue asignada en clase
+   document.addEventListener('DOMContentLoaded',function(){
+   document.querySelectorAll('#bottom-line').forEach(function (div) {
+   div.onclick=function(){
+   
+       //Asignamos el valos del DATASET que se selecciono 
+       console.log(div.dataset.view)
+       
+       activetab(div.dataset.view);
+       /*Se asigna el valor del Parametro a la función ACTIVETAB, el cual nos permitira 
+       elegir la sección del menu deseada, permitiendo MOSTRAR u OCULTAR los elementos de 
+       cada sección.*/
 
+     
+       
+   };
+   });
+   /*
+   window.onscroll=function(){
+   this.console.log(window.scrollY)
+   }*/
+   });
